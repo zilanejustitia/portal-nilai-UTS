@@ -1,0 +1,511 @@
+/* Reset sederhana agar tampilan konsisten di berbagai browser */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Warna dan tipografi utama website */
+:root {
+  --navy: #0f2f57;
+  --blue: #1d5fa7;
+  --light-blue: #e9f2ff;
+  --gray: #6b7280;
+  --soft-gray: #eef2f7;
+  --line: #d8dee8;
+  --white: #ffffff;
+  --green: #167a45;
+  --red: #b42318;
+  --shadow: 0 20px 50px rgba(15, 47, 87, 0.14);
+}
+
+/* Pengaturan dasar halaman */
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f7faff 0%, #eef3f9 55%, #ffffff 100%);
+  color: #172033;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+
+/* Utility untuk menyembunyikan elemen */
+.hidden {
+  display: none !important;
+}
+
+/* Animasi fade in untuk pergantian tampilan */
+.fade-in {
+  animation: fadeIn 0.55s ease both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Layout dasar setiap halaman */
+.page {
+  min-height: 100vh;
+}
+
+/* Tampilan tengah untuk halaman login */
+.login-page {
+  display: grid;
+  place-items: center;
+  padding: 32px 18px;
+}
+
+/* Panel login modern */
+.login-panel {
+  width: min(100%, 440px);
+  padding: 34px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+/* Blok identitas portal pada login */
+.brand-block {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.brand-block h1 {
+  margin-top: 14px;
+  color: var(--navy);
+  font-size: 1.55rem;
+  letter-spacing: 0;
+}
+
+.brand-block p {
+  margin-top: 8px;
+  color: var(--gray);
+  font-size: 0.98rem;
+}
+
+/* Logo generik berbentuk lingkaran dengan ikon buku sederhana */
+.logo-circle,
+.mini-logo {
+  display: inline-grid;
+  place-items: center;
+  background: var(--navy);
+  color: var(--white);
+  font-weight: 800;
+}
+
+.logo-circle {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  box-shadow: 0 12px 28px rgba(15, 47, 87, 0.2);
+}
+
+.book-icon {
+  position: relative;
+  font-size: 1.6rem;
+}
+
+.book-icon::before,
+.book-icon::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  width: 18px;
+  height: 4px;
+  background: #9cc8ff;
+  border-radius: 999px;
+}
+
+.book-icon::before {
+  left: -17px;
+  transform: rotate(18deg);
+}
+
+.book-icon::after {
+  right: -17px;
+  transform: rotate(-18deg);
+}
+
+/* Form login */
+.login-form {
+  display: grid;
+  gap: 12px;
+}
+
+.login-form label,
+.search-field label {
+  color: #27364d;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.login-form input,
+.search-field input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfcff;
+  color: #172033;
+  font-size: 1rem;
+  outline: none;
+}
+
+.login-form input:focus,
+.search-field input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(29, 95, 167, 0.14);
+}
+
+.login-form button,
+.pagination button {
+  border: 0;
+  border-radius: 8px;
+  background: var(--navy);
+  color: var(--white);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.login-form button {
+  margin-top: 10px;
+  padding: 14px;
+  font-size: 1rem;
+}
+
+.login-form button:hover,
+.pagination button:hover:not(:disabled) {
+  background: var(--blue);
+  transform: translateY(-1px);
+}
+
+/* Overlay loading login */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: none;
+  place-items: center;
+  background: rgba(15, 47, 87, 0.42);
+  backdrop-filter: blur(4px);
+}
+
+.loading-overlay.active {
+  display: grid;
+}
+
+.loader-card {
+  width: min(86vw, 320px);
+  padding: 28px;
+  background: var(--white);
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.loader-card p {
+  margin-top: 14px;
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.spinner {
+  width: 46px;
+  height: 46px;
+  margin: 0 auto;
+  border: 5px solid var(--soft-gray);
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Header halaman hasil yang tetap di atas saat discroll */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--navy);
+  color: var(--white);
+  box-shadow: 0 8px 24px rgba(15, 47, 87, 0.18);
+}
+
+.header-content {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 16px 0;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.mini-logo {
+  flex: 0 0 46px;
+  width: 46px;
+  height: 46px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+}
+
+.header-brand h1 {
+  font-size: 1.25rem;
+  letter-spacing: 0;
+}
+
+.header-brand p {
+  color: #cfe3ff;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+/* Pembungkus konten hasil UTS */
+.content-wrap {
+  width: min(1180px, calc(100% - 32px));
+  margin: 26px auto 46px;
+}
+
+/* Informasi akademik di bagian atas */
+.info-section {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.info-item {
+  min-height: 86px;
+  padding: 16px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(15, 47, 87, 0.07);
+}
+
+.info-item span {
+  display: block;
+  color: var(--gray);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.info-item strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--navy);
+  font-size: 1rem;
+}
+
+/* Toolbar pencarian */
+.toolbar {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+  padding: 18px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.search-field {
+  display: grid;
+  gap: 8px;
+}
+
+/* Kartu tabel dan area scroll horizontal */
+.table-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+}
+
+thead {
+  background: var(--navy);
+  color: var(--white);
+}
+
+th,
+td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: middle;
+}
+
+th {
+  font-size: 0.88rem;
+  text-transform: uppercase;
+}
+
+tbody tr {
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+tbody tr:hover {
+  background: var(--light-blue);
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Label status kelulusan */
+.status-badge {
+  display: inline-block;
+  min-width: 92px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.status-pass {
+  background: #e8f7ef;
+  color: var(--green);
+}
+
+.status-fail {
+  background: #fff0ef;
+  color: var(--red);
+}
+
+/* Tampilan saat data pencarian kosong */
+.empty-row {
+  padding: 28px 16px;
+  color: var(--gray);
+  text-align: center;
+}
+
+/* Skeleton loading tabel */
+.skeleton-card {
+  padding: 18px;
+}
+
+.skeleton-row {
+  height: 46px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #e8edf4 25%, #f7f9fc 45%, #e8edf4 65%);
+  background-size: 220% 100%;
+  animation: shimmer 1.15s ease-in-out infinite;
+}
+
+.skeleton-row:last-child {
+  margin-bottom: 0;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 220% 0;
+  }
+  to {
+    background-position: -220% 0;
+  }
+}
+
+/* Kontrol pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.pagination button {
+  min-width: 108px;
+  padding: 10px 14px;
+}
+
+.pagination button:disabled {
+  background: #aab4c2;
+  cursor: not-allowed;
+}
+
+#pageInfo {
+  color: var(--navy);
+  font-weight: 800;
+}
+
+/* Penyesuaian untuk tablet */
+@media (max-width: 920px) {
+  .info-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Penyesuaian untuk handphone */
+@media (max-width: 620px) {
+  .login-panel {
+    padding: 26px 20px;
+  }
+
+  .brand-block h1,
+  .header-brand h1 {
+    font-size: 1.08rem;
+  }
+
+  .header-brand {
+    align-items: flex-start;
+  }
+
+  .content-wrap,
+  .header-content {
+    width: min(100% - 20px, 1180px);
+  }
+
+  .info-section,
+  .toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .toolbar {
+    padding: 14px;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+  }
+
+  .pagination button {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  #pageInfo {
+    order: -1;
+    width: 100%;
+    text-align: center;
+  }
+}
