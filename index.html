@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <!-- Pengaturan dasar dokumen -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Akademik Mahasiswa</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Overlay loading saat login -->
+  <div id="loginLoading" class="loading-overlay" aria-hidden="true">
+    <div class="loader-card">
+      <div class="spinner"></div>
+      <p>Memuat portal akademik...</p>
+    </div>
+  </div>
+
+  <!-- Halaman Login -->
+  <main id="loginPage" class="page login-page fade-in">
+    <section class="login-panel">
+      <!-- Identitas portal -->
+      <div class="brand-block">
+        <div class="logo-circle" aria-label="Logo universitas generik">
+          <span class="book-icon">B</span>
+        </div>
+        <h1>PORTAL AKADEMIK MAHASISWA</h1>
+        <p>Tahun Akademik 2024/2025<br>Semester Genap</p>
+      </div>
+
+      <!-- Form login tanpa autentikasi -->
+      <form id="loginForm" class="login-form">
+        <label for="nimInput">NIM</label>
+        <input id="nimInput" type="text" inputmode="numeric" placeholder="Masukkan NIM" required>
+
+        <label for="passwordInput">Password</label>
+        <input id="passwordInput" type="password" placeholder="Masukkan password" required>
+
+        <button type="submit">Masuk</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Halaman Hasil UTS -->
+  <main id="resultPage" class="page result-page hidden">
+    <!-- Header sticky agar tetap terlihat saat halaman discroll -->
+    <header class="site-header">
+      <div class="header-content">
+        <div class="header-brand">
+          <div class="mini-logo">B</div>
+          <div>
+            <h1>PORTAL AKADEMIK MAHASISWA</h1>
+            <p>HASIL UJIAN TENGAH SEMESTER (UTS)</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="content-wrap fade-in">
+      <!-- Informasi akademik -->
+      <section class="info-section" aria-label="Informasi akademik">
+        <div class="info-item">
+          <span>Tahun Akademik</span>
+          <strong>2024/2025</strong>
+        </div>
+        <div class="info-item">
+          <span>Semester</span>
+          <strong>Genap</strong>
+        </div>
+        <div class="info-item">
+          <span>Fakultas</span>
+          <strong>Ekonomi dan Bisnis</strong>
+        </div>
+        <div class="info-item">
+          <span>Program Studi</span>
+          <strong>Bisnis Digital</strong>
+        </div>
+        <div class="info-item">
+          <span>Mata Kuliah</span>
+          <strong>Multimedia</strong>
+        </div>
+      </section>
+
+      <!-- Area pencarian data mahasiswa -->
+      <section class="toolbar" aria-label="Pencarian mahasiswa">
+        <div class="search-field">
+          <label for="searchName">Search Nama Mahasiswa</label>
+          <input id="searchName" type="search" placeholder="Contoh: zilane">
+        </div>
+        <div class="search-field">
+          <label for="searchNim">Search NIM</label>
+          <input id="searchNim" type="search" inputmode="numeric" placeholder="Contoh: 2233445565">
+        </div>
+      </section>
+
+      <!-- Skeleton loading sebelum tabel nilai ditampilkan -->
+      <section id="skeletonTable" class="table-card skeleton-card" aria-label="Memuat data nilai">
+        <div class="skeleton-row"></div>
+        <div class="skeleton-row"></div>
+        <div class="skeleton-row"></div>
+        <div class="skeleton-row"></div>
+        <div class="skeleton-row"></div>
+      </section>
+
+      <!-- Tabel nilai UTS -->
+      <section id="tableSection" class="table-card hidden" aria-label="Tabel nilai UTS">
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama Mahasiswa</th>
+                <th>NIM</th>
+                <th>Nilai UTS</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="studentTableBody"></tbody>
+          </table>
+        </div>
+
+        <!-- Kontrol pagination -->
+        <div class="pagination">
+          <button id="prevBtn" type="button">Previous</button>
+          <span id="pageInfo">Halaman 1</span>
+          <button id="nextBtn" type="button">Next</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
